@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row p-4 m-0">
+        <ng-container *ngFor="let data of sharedListData">
+            <div class="col-xl-3 col-sm-6" *ngFor="let item of data.data">
+                <article class="board red">
+                    <header>
+                        <h4>{{item.name}} <span>{{item.data.length}}</span></h4>
+                        <span class="icon flaticon-more-1"></span>
+                    </header>
+                    <div class="board-content">
+                        @if(item.data.length>0){
+                        <ul class="list ps-0">
+                            <li class="el" *ngFor="let cat of item.data">
+                                <div class="task blue">
+                                    <header class="d-flex justify-content-between align-items-center">
+                                        <h3>{{cat.title}}</h3>
+                                    </header>
+                                    <div class="task-content">
+                                        {{cat.description}}
+                                        <div
+                                            [ngClass]="{'high': cat.priorityId ==1,'med': cat.priorityId ==2,'low': cat.priorityId ==3}">
+                                            {{cat.priorityName}}
+                                            Priority</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        }@else{
+                        <div class="text-center">No Data</div>
+                        }
+                    </div>
+                </article>
+            </div>
+        </ng-container>
+        <div class="text-center" *ngIf="TaskListData.length == 0">No Data</div>
+    </div>

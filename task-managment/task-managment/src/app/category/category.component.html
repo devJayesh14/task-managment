@@ -1,0 +1,68 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of categoryData;let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>
+
+                <div class="d-flex" (click)="editCategory(item)">
+                    <div class="pencil me-2 cursor-pointer" data-bs-toggle="modal" data-bs-target="#AddCategoryModal">
+                        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px"
+                            viewBox="0 0 528.899 528.899" xml:space="preserve">
+                            <g>
+                                <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981
+                 c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611
+                 C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069
+                 L27.473,390.597L0.3,512.69z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="trash cursor-pointer" (click)="deleteCategory(item)">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 9H22M19 14H22M19 19H21M16 6L15.1991 18.0129C15.129 19.065 15.0939 19.5911 14.8667 19.99C14.6666 20.3412 14.3648 20.6235 14.0011 20.7998C13.588 21 13.0607 21 12.0062 21H7.99377C6.93927 21 6.41202 21 5.99889 20.7998C5.63517 20.6235 5.33339 20.3412 5.13332 19.99C4.90607 19.5911 4.871 19.065 4.80086 18.0129L4 6M2 6H18M14 6L13.7294 5.18807C13.4671 4.40125 13.3359 4.00784 13.0927 3.71698C12.8779 3.46013 12.6021 3.26132 12.2905 3.13878C11.9376 3 11.523 3 10.6936 3H9.30643C8.47705 3 8.06236 3 7.70951 3.13878C7.39792 3.26132 7.12208 3.46013 6.90729 3.71698C6.66405 4.00784 6.53292 4.40125 6.27064 5.18807L6 6M12 10V17M8 10L7.99995 16.9998"
+                                stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" id="AddCategoryModal" tabindex="-1"
+    role="dialog" aria-labelledby="AddCategoryModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddCategoryModal">Add Task</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row m-0 p-0">
+                    <div class="col-md-6 mb-2">
+                        <label for="">Category</label>
+                        <input type="text" name="Title" class="form-control" [(ngModel)]="categoryModal">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addCategory()"
+                    data-bs-dismiss="modal">{{isNew?"Save":"Update"}}</button>
+            </div>
+        </div>
+    </div>
+</div>
